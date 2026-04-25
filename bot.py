@@ -21,5 +21,7 @@ def send_film(message):
         bot.send_video(message.chat.id, films[code])
     else:
         bot.send_message(message.chat.id, "❌ Bunday kino topilmadi")
-
+@bot.message_handler(content_types=['video'])
+def get_id(message):
+    print(message.video.file_id)
 bot.infinity_polling()
