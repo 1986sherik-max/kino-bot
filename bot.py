@@ -8,7 +8,8 @@ bot = telebot.TeleBot(TOKEN)
 films = {
     "1001": "BAACAgIAAxkBAAMiae00S8YJ85OWAAE0bP4Tz-YKfp9tAAIpngAC7eNoSzqJJJsi-m4iOwQ",
     "1002": "BAACAgIAAxkBAAM5ae0292fWNdi2exkHGTz4jMXv6CMAAlSfAALt42hLr8tJYe1cFsc7BA",
-    "1003": "BAACAgIAAxkBAAM7ae03T7Xc_4tLXDuAsDTLrffQZFgAAqmiAALt42hLh2oFoxNO8-o7BA"
+    "1003": "BAACAgIAAxkBAAM7ae03T7Xc_4tLXDuAsDTLrffQZFgAAqmiAALt42hLh2oFoxNO8-o7BA",
+    "1004": "BAACAgIAAxkBAAOjafGs8HfsDL1aNjqffjJikarghGcAAqyYAAK-6ZFLP4cDKPsJ3xc7BA"
 }
 
 @bot.message_handler(commands=['start'])
