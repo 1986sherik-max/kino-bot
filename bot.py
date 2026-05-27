@@ -19,5 +19,9 @@ def send_movie(message):
             message_id=movies[code]
         )
 
-    else:
+    else:        
         bot.send_message(message.chat.id, "Kino topilmadi")
+
+@bot.message_handler(content_types=['forward_from_chat'])
+def test(message):
+    print(message.forward_from_chat.id)
