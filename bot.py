@@ -9,10 +9,13 @@ bot.remove_webhook()
 @bot.message_handler(content_types=['all'])
 def test(message):
 
+    print("====== NEW MESSAGE ======")
     print(message)
 
-    if message.forward_from_chat:
-        print("KANAL ID:")
+    try:
+        print("CHAT ID:")
         print(message.forward_from_chat.id)
+    except:
+        print("FORWARD TOPILMADI")
 
 bot.infinity_polling()
