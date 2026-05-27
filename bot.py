@@ -29,9 +29,9 @@ def send_movie(message):
         bot.send_message(message.chat.id, "Kino topilmadi")
 
 
-@bot.message_handler(content_types=['forward_from_chat'])
+@bot.message_handler(func=lambda message: True, content_types=['all'])
 def test(message):
-    print(message.forward_from_chat.id)
+    print(message)
 
 
 bot.infinity_polling()
