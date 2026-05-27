@@ -6,10 +6,8 @@ bot = telebot.TeleBot(TOKEN)
 
 bot.remove_webhook()
 
-
-@bot.message_handler(content_types=['all'])
+@bot.message_handler(func=lambda message: True)
 def test(message):
-    print(message)
-
+    print(message.text)
 
 bot.infinity_polling()
