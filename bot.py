@@ -1,41 +1,23 @@
-import os
-import telebot
+movies = {
+    "1001": 3,
+    "1002": 26,
+}
 
-TOKEN = os.getenv("TOKEN")
+CHANNEL_ID = -1001234567890
 
-bot = telebot.TeleBot(TOKEN)
-
-films = {
-    "1001": "BAACAgIAAxkBAAICP2oXFbpWIot1WNxt6TuefqaDJo4QAAIpngAC7eNoSztqfBmU7J5FOwQ",
-    "1002": "BAACAgIAAxkBAAM5ae0292fWNdi2exkHGTz4jMXv6CMAAlSfAALt42hLr8tJYe1cFsc7BA",
-    "1003": "BAACAgIAAxkBAAM7ae03T7Xc_4tLXDuAsDTLrffQZFgAAqmiAALt42hLh2oFoxNO8-o7BA",
-    "1004": "BAACAgIAAxkBAAOjafGs8HfsDL1aNjqffjJikarghGcAAqyYAAK-6ZFLP4cDKPsJ3xc7BA",
-     "1005": "BAACAgIAAxkBAAPxaf7rqAmusDYaJZpRuiA6R4UhtRgAApOZAAJlkPhLvnA0iWuxwD87BA",
-    "1006": "BAACAgIAAxkBAAPZaf7n_hnewVTINqM8Ojzu5JhF1OMAAmWdAAKmybhLndwCgLeJyfI7BA",
-    "1007": "BAACAgIAAxkBAAPbaf7oOu_0sK5HwBYHTyIq14rE4lsAAnadAAKmybhL42_vth7lH8Y7BA",
-    "1008": "BAACAgIAAxkBAAPdaf7oRnbQtG3PTv8hsf4h-UtAx5QAAqqdAAKmybhL5y6Q2gUUKG07BA",
-    "1009": "BAACAgIAAxkBAAP7af9un5iBKdEZ8bk3dmXzXtd5tHQAAp-gAALeD_hL55scGeUgGts7BA",
-    "1010": "BAACAgIAAxkBAAP9af9uv2zUS6G-EAdxNDZSbAQLE_UAAqqgAALeD_hL6LLV_u68Dp47BA",
-    "1011": "BAACAgIAAxkBAAIBHGn_lKKItPUuRLrqGYOQhkJrGX8GAAJBnQACXXABSCQBycgaieGGOwQ",
-    "1012": "BAACAgIAAxkBAAIBHmn_lL21FNoqDnqPNAFLS2g-UCaGAALgngACXXABSE_P9Ln-CtKgOwQ",
-    "1013": "BAACAgIAAxkBAAICNmoXFH3hIT-zkjDONgK-bA7CS3cqAAKclgACNs4BSCzv73TxgMWLOwQ",
-    "1014": "BAACAgIAAxkBAAICOmoXFMIbF7fQ-S8S2Mvxtgn1sWOXAALHlQACNs4JSLvMY2hJRrl8OwQ",
-    "1015": "BAACAgIAAxkBAAICMWoXFAP58t4_UD9hpEJoYGxqXxqZAAIuowACOoERSPcT3dIKFuA1OwQ"
-   }
-
-@bot.message_handler(commands=['start'])
-def start(message):
-    bot.send_message(message.chat.id, "Kino kodini yuboring")
 
 @bot.message_handler(func=lambda message: True)
-def send_film(message):
+def send_movie(message):
+
     code = message.text.strip()
 
-    if code in films:
-        bot.send_video(message.chat.id, films[code])
+    if code in movies:
+
+        bot.forward_message(
+            chat_id=message.chat.id,
+            from_chat_id=CHANNEL_ID,
+            message_id=movies[code]
+        )
+
     else:
-        bot.send_message(message.chat.id, "❌ Bunday kino topilmadi")
-@bot.message_handler(content_types=['video'])
-def get_id(message):
-    bot.reply_to(message, message.video.file_id)
-bot.infinity_polling()
+        bot.send_message(message.chat.id, "Kino topilmadi")
