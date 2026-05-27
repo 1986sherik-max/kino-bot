@@ -6,16 +6,8 @@ bot = telebot.TeleBot(TOKEN)
 
 bot.remove_webhook()
 
-@bot.message_handler(content_types=['all'])
+@bot.message_handler(func=lambda message: True)
 def test(message):
-
-    print("====== NEW MESSAGE ======")
-    print(message)
-
-    try:
-        print("CHAT ID:")
-        print(message.forward_from_chat.id)
-    except:
-        print("FORWARD TOPILMADI")
+    print(message.text)
 
 bot.infinity_polling()
