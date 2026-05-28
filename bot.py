@@ -11,7 +11,11 @@ app = Flask(__name__)
 def test(message):
 
     print(message)
-
+    if message.forward_from_chat:
+        bot.reply_to(
+            message,
+            f"Kanal ID: {message.forward_from_chat.id}"
+        )
     bot.reply_to(message, "Ishlayapti ✅")
 
 @app.route(f'/{TOKEN}', methods=['POST'])
