@@ -34,7 +34,7 @@ def webhook():
 
 @app.route('/')
 def index():
-    return 'Bot ishlayapti'
+    return 'Бот возобновит работу сегодня в 19:00.'
 
 bot.remove_webhook()
 
