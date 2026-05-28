@@ -1,12 +1,16 @@
-import telebot
 import os
+import telebot
 
 TOKEN = os.getenv("TOKEN")
 
 bot = telebot.TeleBot(TOKEN)
 
-@bot.message_handler(func=lambda m: True)
-def test(message):
-    print(message)
+bot.remove_webhook()
 
-bot.infinity_polling()
+@bot.message_handler(content_types=['text'])
+def test(message):
+    bot.reply_to(message, "Salom! Bot ishlayapti ✅")
+
+print("Bot ishga tushdi...")
+
+bot.infinity_polling(skip_pending=True)
