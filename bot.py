@@ -7,9 +7,10 @@ bot = telebot.TeleBot(TOKEN)
 @bot.message_handler(func=lambda message: True)
 def test(message):
 
-    text = str(message.text)
-
-    bot.reply_to(message, f"Siz yozdingiz: {text}")
+    if message.forward_date:
+        bot.reply_to(message, "FORWARD KELDI ✅")
+    else:
+        bot.reply_to(message, "Oddiy xabar")
 
 print("Bot ishladi")
 
