@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 # Kino kodlari
 movies = {
-    "101": 3,
+    "1001": 3,
     "1015": 4,
     "103": 7
 }
