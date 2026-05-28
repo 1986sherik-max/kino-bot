@@ -7,14 +7,30 @@ bot = telebot.TeleBot(TOKEN)
 
 bot.remove_webhook()
 
-@bot.message_handler(content_types=['all'])
+@bot.message_handler(func=lambda m: True, content_types=[
+    'text',
+    'audio',
+    'document',
+    'photo',
+    'sticker',
+    'video',
+    'voice',
+    'video_note',
+    'contact',
+    'location',
+    'animation'
+])
 def test(message):
 
-    print("====== NEW MESSAGE ======")
+    print("====== MESSAGE KELDI ======")
+
+    print(message)
 
     try:
+        print("KANAL ID:")
         print(message.forward_from_chat.id)
-    except:
-        print("FORWARD YOQ")
+    except Exception as e:
+        print("ERROR:")
+        print(e)
 
 bot.infinity_polling()
