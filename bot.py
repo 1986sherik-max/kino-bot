@@ -1,4 +1,5 @@
 import telebot
+import os
 
 TOKEN = os.getenv("TOKEN")
 
