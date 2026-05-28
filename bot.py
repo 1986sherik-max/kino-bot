@@ -1,27 +1,21 @@
 import telebot
 import os
-import time
 
 TOKEN = os.getenv("TOKEN")
 
 bot = telebot.TeleBot(TOKEN)
 
-while True:
-    try:
-        bot.remove_webhook()
+bot.remove_webhook()
 
-        @bot.message_handler(content_types=['all'])
-        def test(message):
+@bot.message_handler(content_types=['all'])
+def test(message):
 
-            print("====== MESSAGE ======")
+    print("====== MESSAGE ======")
 
-            try:
-                print(message.forward_from_chat.id)
-            except:
-                print("FORWARD YOQ")
+    print(message)
 
-        bot.infinity_polling(timeout=30, long_polling_timeout=10)
+    if message.forward_from_chat:
+        print("KANAL ID:")
+        print(message.forward_from_chat.id)
 
-    except Exception as e:
-        print(e)
-        time.sleep(5)
+bot.infinity_polling(skip_pending=True)
