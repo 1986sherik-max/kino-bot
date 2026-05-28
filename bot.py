@@ -19,7 +19,7 @@ def test(message):
         )
 
     else:
-        bot.reply_to(message, "Oddiy xabar")
+        bot.reply_to(message, "Бот возобновит работу сегодня в 19:00.")
 
 @app.route(f'/{TOKEN}', methods=['POST'])
 def webhook():
@@ -34,7 +34,7 @@ def webhook():
 
 @app.route('/')
 def index():
-    return 'Бот возобновит работу сегодня в 19:00.'
+    return 'Bot ishlayapti'
 
 bot.remove_webhook()
 
