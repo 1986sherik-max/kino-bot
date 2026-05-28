@@ -16,7 +16,7 @@ def test(message):
             message,
             f"Kanal ID: {message.forward_from_chat.id}"
         )
-    bot.reply_to(message, "Ishlayapti ✅")
+    bot.reply_to(message, "Бот заработает через 3 часа.")
 
 @app.route(f'/{TOKEN}', methods=['POST'])
 def webhook():
