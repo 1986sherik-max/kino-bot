@@ -4,16 +4,13 @@ TOKEN = "8778523615:AAG_GafD8K-M6joaswuWM4i985sI1N_YP5s"
 
 bot = telebot.TeleBot(TOKEN)
 
-@bot.message_handler(func=lambda m: True, content_types=['any'])
+@bot.message_handler(func=lambda message: True)
 def test(message):
 
-    print(message)
+    text = str(message.text)
 
-    if message.forward_origin:
-        bot.reply_to(message, "FORWARD KELDI ✅")
-    else:
-        bot.reply_to(message, "Oddiy abar")
+    bot.reply_to(message, f"Siz yozdingiz: {text}")
 
 print("Bot ishladi")
 
-bot.infinity_polling()
+bot.infinity_polling(none_stop=True)
