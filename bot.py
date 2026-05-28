@@ -7,23 +7,30 @@ bot = telebot.TeleBot(TOKEN)
 
 app = Flask(__name__)
 
-@bot.message_handler(func=lambda message: True)
+@bot.message_handler(func=lambda m: True, content_types=['text','video','document','photo'])
 def test(message):
 
-    print(message)
+    print(message.json)
+
     if message.forward_from_chat:
         bot.reply_to(
             message,
             f"Kanal ID: {message.forward_from_chat.id}"
         )
-    bot.reply_to(message, "Бот заработает через 3 часа.")
+
+    else:
+        bot.reply_to(message, "Oddiy xabar")
 
 @app.route(f'/{TOKEN}', methods=['POST'])
 def webhook():
+
     json_str = request.get_data().decode('UTF-8')
+
     update = telebot.types.Update.de_json(json_str)
+
     bot.process_new_updates([update])
-    return '!', 200
+
+    return 'ok', 200
 
 @app.route('/')
 def index():
