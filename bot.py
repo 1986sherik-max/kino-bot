@@ -24,11 +24,11 @@ def send_movie(message):
 
     if code in movies:
 
-        bot.forward_message(
-            chat_id=message.chat.id,
-            from_chat_id=CHANNEL_ID,
-            message_id=movies[code]
-        )
+      bot.copy_message(
+    chat_id=message.chat.id,
+    from_chat_id=CHANNEL_ID,
+    message_id=movies[code]
+)
 
     else:
         bot.reply_to(message, "Kino topilmadi ❌")
