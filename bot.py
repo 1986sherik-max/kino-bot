@@ -3,23 +3,36 @@ from flask import Flask, request
 
 TOKEN = "8778523615:AAG_GafD8K-M6joaswuWM4i985sI1N_YP5s"
 
+CHANNEL_ID = -1003790400720
+
 bot = telebot.TeleBot(TOKEN)
 
 app = Flask(__name__)
 
-@bot.message_handler(func=lambda m: True, content_types=['text','video','document','photo'])
-def test(message):
+# Kino kodlari
+movies = {
+    "101": 5,
+    "102": 6,
+    "103": 7
+}
 
-    print(message.json)
 
-    if message.forward_from_chat:
-        bot.reply_to(
-            message,
-            f"Kanal ID: {message.forward_from_chat.id}"
+@bot.message_handler(func=lambda m: True)
+def send_movie(message):
+
+    code = message.text.strip()
+
+    if code in movies:
+
+        bot.forward_message(
+            chat_id=message.chat.id,
+            from_chat_id=CHANNEL_ID,
+            message_id=movies[code]
         )
 
     else:
-        bot.reply_to(message, "Бот возобновит работу сегодня в 19:00.")
+        bot.reply_to(message, "Kino topilmadi ❌")
+
 
 @app.route(f'/{TOKEN}', methods=['POST'])
 def webhook():
@@ -32,15 +45,18 @@ def webhook():
 
     return 'ok', 200
 
+
 @app.route('/')
 def index():
-    return 'Bot ishlayapti'
+    return 'Bot ishlayapti ✅'
+
 
 bot.remove_webhook()
 
 bot.set_webhook(
     url=f"https://kino-bot-production-1071.up.railway.app/{TOKEN}"
 )
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
