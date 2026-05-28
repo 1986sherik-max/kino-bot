@@ -12,7 +12,7 @@ def test(message):
     if message.forward_origin:
         bot.reply_to(message, "FORWARD KELDI ✅")
     else:
-        bot.reply_to(message, "Oddiy xabar")
+        bot.reply_to(message, "Oddiy abar")
 
 print("Bot ishladi")
 
