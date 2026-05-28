@@ -40,7 +40,7 @@ def send_movie(message):
 )
 
     else:
-        bot.reply_to(message, "Kino topilmadi ❌")
+        bot.reply_to(message, "Noto'g'ri kod kiritdingiz ❌ / Вы ввели неверный код ❌")
 
 
 @app.route(f'/{TOKEN}', methods=['POST'])
