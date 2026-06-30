@@ -1,7 +1,7 @@
 import telebot
 from flask import Flask, request
 
-TOKEN = "8778523615:AAG_GafD8K-M6joaswuWM4i985sI1N_YP5s"
+TOKEN = "8778523615:AAFG5oRO6LrLOvBKeOIUhweOwCnZvLUNbBo"
 
 CHANNEL_ID = -1003790400720
 
